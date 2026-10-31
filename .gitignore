@@ -1,0 +1,9 @@
+.idea/
+
+checkpoints/
+__pycache__/
+logs/
+fast/test/
+
+*.txt
+*.pyc
