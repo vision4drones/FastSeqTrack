@@ -16,7 +16,7 @@ def parse_args():
     # for train
     parser.add_argument('--script', type=str, default='fasterseqtrack',
                         help='training script name')
-    parser.add_argument('--config', type=str, default='fasterseqtrack_b256_1t', help='yaml configure file name')
+    parser.add_argument('--config', type=str, default='fasterseqtrack_b256_2t', help='yaml configure file name')
     args = parser.parse_args()
 
     return args
@@ -115,8 +115,7 @@ if __name__ == "__main__":
     search = search.to(device)
     model.eval()
     # evaluate the model properties
-    images_list = [template,template,search] #1t
-    # images_list = [template, template,search] #2t
+    images_list = [template,template,search] #2t
     xz = model.forward_encoder(images_list)
     evaluate(model, images_list, xz, input_seqs, hanning, bs=bs)
 
