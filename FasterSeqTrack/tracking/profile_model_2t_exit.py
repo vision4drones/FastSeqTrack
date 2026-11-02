@@ -32,11 +32,9 @@ def parse_args():
     # for train
     parser.add_argument('--script', type=str, default='fasterseqtrack',
                         help='training script name')
-    parser.add_argument('--config', type=str, default='fasterseqtrack_b256_1t', help='yaml configure file name')
+    parser.add_argument('--config', type=str, default='fasterseqtrack_b256_2t', help='yaml configure file name')
     parser.add_argument('--exit_layer', type=int, default=6,
-                        help='encoder layer used for fixed early-exit profiling')
-    parser.add_argument('--threshold', type=float, default=0.0,
-                        help='confidence threshold used for early-exit profiling')
+                        help='encoder layer used for fixed early-exit profiling')   # exit_layer = 6 / 12
     args = parser.parse_args()
 
     return args
@@ -128,7 +126,7 @@ if __name__ == "__main__":
     # evaluate the model properties
     images_list = [template, template, search]
     exit_layer = args.exit_layer
-    threshold = args.threshold
+    threshold = 0.0
     xz, _, _, _ = model.inference_encoder(images_list, exit_layer, threshold)
     evaluate(model, images_list, xz, input_seqs, hanning, bs=bs,
              exit_layer=exit_layer, threshold=threshold)
