@@ -362,7 +362,7 @@ class VisionTransformer(nn.Module):
                 xz = blk(xz)
                 if count % skip_layers == 0:
                     xz_norm = self.norm(xz)
-                    xz_bn = bottleneck(xz_norm[:, 0:260, :])
+                    xz_bn = bottleneck(xz_norm[:, 0:(self.num_patches_search * num_search + 4), :])
                     tgt = xz_bn[:, :4, :]
                     out = vocab_embed(tgt)
                     out = out.softmax(-1)
